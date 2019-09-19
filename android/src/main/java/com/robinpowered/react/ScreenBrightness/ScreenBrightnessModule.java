@@ -273,7 +273,7 @@ public class ScreenBrightnessModule extends ReactContextBaseJavaModule
     public void setBrightnessMode(final String mode, final Promise promise) {
         if (hasSettingsPermission()) {
             // ensure brightness is bound between range 0-255
-            int writeMode == Settings.System.SCREEN_BRIGHTNESS_MODE_AUTOMATIC;
+            int writeMode = Settings.System.SCREEN_BRIGHTNESS_MODE_AUTOMATIC;
             if ("manual" == mode) {
                 writeMode = Settings.System.SCREEN_BRIGHTNESS_MODE_MANUAL;
             }
