@@ -1,6 +1,6 @@
 {
   "name": "react-native-screen-brightness",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Screen brightness module for iOS & Android on React Native",
   "main": "index.js",
   "scripts": {
