@@ -40,7 +40,7 @@ RCT_EXPORT_METHOD(getBrightnessMode:(RCTPromiseResolveBlock)resolve
 }
 
 RCT_REMAP_METHOD(setBrightnessMode,
-                 mode:(NSString)*brightnessMode
+                 mode:(NSString *)brightnessMode
                  setBrightnessModeResolver:(RCTPromiseResolveBlock)resolve
                  setBrightnessModeRejector:(RCTPromiseRejectBlock)reject) {
     resolve(@(true));
