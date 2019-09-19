@@ -149,6 +149,11 @@ public class ScreenBrightnessModule extends ReactContextBaseJavaModule
             brightness = Math.max(BRIGHTNESS_MIN, Math.min(brightness, BRIGHTNESS_MAX));
             Settings.System.putInt(
                     getReactApplicationContext().getContentResolver(),
+                    Settings.System.SCREEN_BRIGHTNESS_MODE,
+                    Settings.System.SCREEN_BRIGHTNESS_MODE_MANUAL
+            );
+            Settings.System.putInt(
+                    getReactApplicationContext().getContentResolver(),
                     Settings.System.SCREEN_BRIGHTNESS,
                     brightness
             );
@@ -243,6 +248,43 @@ public class ScreenBrightnessModule extends ReactContextBaseJavaModule
             });
         } else {
             promise.reject(new Error("Unable to access the current window"));
+        }
+    }
+
+    @ReactMethod
+    public void getBrightnessMode(final Promise promise) {
+        Integer mode;
+        try {
+            mode = Settings.System.getInt(
+                    getReactApplicationContext().getContentResolver(),
+                    Settings.System.SCREEN_BRIGHTNESS_MODE
+            );
+        } catch (Settings.SettingNotFoundException e) {
+            mode = Settings.System.SCREEN_BRIGHTNESS_MODE_AUTOMATIC;
+        }
+        if (mode == Settings.System.SCREEN_BRIGHTNESS_MODE_MANUAL) {
+            promise.resolve("manual");
+        } else {
+            promise.resolve("auto");
+        }
+    }
+
+    @ReactMethod
+    public void setBrightnessMode(final String mode, final Promise promise) {
+        if (hasSettingsPermission()) {
+            // ensure brightness is bound between range 0-255
+            int writeMode == Settings.System.SCREEN_BRIGHTNESS_MODE_AUTOMATIC;
+            if ("manual" == mode) {
+                writeMode = Settings.System.SCREEN_BRIGHTNESS_MODE_MANUAL;
+            }
+            Settings.System.putInt(
+                    getReactApplicationContext().getContentResolver(),
+                    Settings.System.SCREEN_BRIGHTNESS_MODE,
+                    writeMode
+            );
+            promise.resolve(true);
+        } else {
+            promise.resolve(false);
         }
     }
 

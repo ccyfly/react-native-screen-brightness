@@ -33,5 +33,18 @@ RCT_REMAP_METHOD(setBrightness,
     resolve(@(brightnessLevel));
 }
 
+RCT_EXPORT_METHOD(getBrightnessMode:(RCTPromiseResolveBlock)resolve
+                  getBrightnessModeRejector:(RCTPromiseRejectBlock)reject) {
+
+    resolve(@"auto");
+}
+
+RCT_REMAP_METHOD(setBrightnessMode,
+                 mode:(NSString)brightnessLevel
+                 setBrightnessModeResolver:(RCTPromiseResolveBlock)resolve
+                 setBrightnessModeRejector:(RCTPromiseRejectBlock)reject) {
+    resolve(@(true));
+}
+
 
 @end
