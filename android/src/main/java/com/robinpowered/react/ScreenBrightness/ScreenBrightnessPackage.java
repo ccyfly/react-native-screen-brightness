@@ -15,9 +15,9 @@ import java.util.List;
 
 public class ScreenBrightnessPackage implements ReactPackage {
   private final int mWriteSettingsRequestCode;
+  private final int intWriteSettingsRequestCode = 13334;
 
-  public ScreenBrightnessPackage(final int writeSettingsRequestCode) {
-    mWriteSettingsRequestCode = writeSettingsRequestCode;
+  public ScreenBrightnessPackage() {
   }
 
   @Override
@@ -25,7 +25,7 @@ public class ScreenBrightnessPackage implements ReactPackage {
     List<NativeModule> modules = new ArrayList<NativeModule>();
     modules.add(new ScreenBrightnessModule(
             reactApplicationContext,
-            mWriteSettingsRequestCode
+            intWriteSettingsRequestCode
     ));
     return modules;
   }
