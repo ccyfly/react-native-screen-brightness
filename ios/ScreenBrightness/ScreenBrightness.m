@@ -29,7 +29,10 @@ RCT_REMAP_METHOD(setBrightness,
                  brightnessLevel:(CGFloat)brightnessLevel
                  setSystemBrightnessResolver:(RCTPromiseResolveBlock)resolve
                  setSystemBrightnessRejector:(RCTPromiseRejectBlock)reject) {
-    [[UIScreen mainScreen] setBrightness:brightnessLevel];
+    // [[UIScreen mainScreen] setBrightness:brightnessLevel];
+    dispatch_sync(dispatch_get_main_queue(), ^{
+        [UIScreen mainScreen].brightness = brightnessLevel;
+    });
     resolve(@(brightnessLevel));
 }
 
